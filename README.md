@@ -8,11 +8,12 @@ First you need to clone this repository and `cd` to it:
 
 ```sh
 git clone https://github.com/dxlr8r/kubedrome.git
+cd kubedrome
 ```
 
 Then setup the config file, `config.jsonnet`, additional navidrome configuration goes into `navidrome.toml`.
 
-Then install/update Navidrome, to the current Kubernetes context/cluster, using [`tk`](https://tanka.dev/install).
+Then provision the chart, to the current kubectl context, using [`tk`](https://tanka.dev/install):
 
 ```sh
 tk apply chart --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
