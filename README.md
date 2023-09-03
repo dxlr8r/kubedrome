@@ -4,7 +4,7 @@ A simple wrapper to adopt [Navidrome](https://www.navidrome.org/) to Kubernetes 
 
 ## Install
 
-First you need to clone this repository and cd to it:
+First you need to clone this repository and `cd` to it:
 
 ```sh
 git clone https://github.com/dxlr8r/kubedrome.git
