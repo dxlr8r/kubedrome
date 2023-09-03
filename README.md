@@ -15,7 +15,7 @@ Then setup the config file, `config.jsonnet`, additional navidrome configuration
 Then install/update Navidrome using [`tk`](https://tanka.dev/install).
 
 ```sh
-tk apply vendor/tk_compose --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
+tk apply chart --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
 ```
 
 ## Post install
@@ -25,6 +25,6 @@ For Navidrome you might want to make sure that the PV isn't deleted if you unins
 Change PV to retain:
 
 ```sh
-navidrome=$(tk eval tk_compose --tla-str context=$(kubectl config current-context) --tla-code config="$(cat config.jsonnet)" -e 'data.config' | jq -r '{name: .name, namespace: .namespace} | @json') && \
+navidrome=$(tk eval chart --tla-str context=$(kubectl config current-context) --tla-code config="$(cat config.jsonnet)" -e 'data.config' | jq -r '{name: .name, namespace: .namespace} | @json') && \
 kubectl get pv -o json | jq --argjson navidrome "$navidrome" '.items[] | select(.spec.claimRef.name == $navidrome.name and .spec.claimRef.namespace == $navidrome.namespace) | .spec.persistentVolumeReclaimPolicy = "Retain"' | kubectl apply -f -
 ```
