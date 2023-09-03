@@ -12,7 +12,7 @@ git clone https://github.com/dxlr8r/kubedrome.git
 
 Then setup the config file, `config.jsonnet`, additional navidrome configuration goes into `navidrome.toml`.
 
-Then install/update Navidrome using [`tk`](https://tanka.dev/install).
+Then install/update Navidrome, to the current Kubernetes context/cluster, using [`tk`](https://tanka.dev/install).
 
 ```sh
 tk apply chart --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
@@ -28,3 +28,7 @@ Change PV to retain:
 navidrome=$(tk eval chart --tla-str context=$(kubectl config current-context) --tla-code config="$(cat config.jsonnet)" -e 'data.config' | jq -r '{name: .name, namespace: .namespace} | @json') && \
 kubectl get pv -o json | jq --argjson navidrome "$navidrome" '.items[] | select(.spec.claimRef.name == $navidrome.name and .spec.claimRef.namespace == $navidrome.namespace) | .spec.persistentVolumeReclaimPolicy = "Retain"' | kubectl apply -f -
 ```
+
+## Update
+
+To get the newest version, simply use git `git pull` and update using `tk apply ...` as shown above in the installation.
