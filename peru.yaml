@@ -5,4 +5,8 @@ git module tk_compose:
   url: https://github.com/dxlr8r/tanka_compose
   drop: 
     - .*
+    - full_config.jsonnet
+    - README.md
+    - example
+    - peru.yaml
   recursive: false
