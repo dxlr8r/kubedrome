@@ -15,7 +15,7 @@ Then setup the config file, `config.jsonnet`, additional navidrome configuration
 Then install/update Navidrome using [`tk`](https://tanka.dev/install).
 
 ```sh
-tk apply tk_compose --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
+tk apply vendor/tk_compose --tla-str context=$(kubectl config current-context) --tla-code config='import "config.jsonnet"'
 ```
 
 ## Post install

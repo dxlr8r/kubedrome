@@ -1,7 +1,8 @@
 imports:
-  tk_compose: tk_compose
+  tk_compose: vendor/tk_compose
 
 git module tk_compose:
   url: https://github.com/dxlr8r/tanka_compose
-  drop: .*
+  drop: 
+    - .*
   recursive: false
